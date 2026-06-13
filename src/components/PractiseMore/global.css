@@ -1,0 +1,126 @@
+@import 'tailwindcss';
+
+
+:root {
+    interpolate-size: allow-keywords;
+}
+
+@theme {
+    --color-background: hsla(64deg,13%,41%,1);
+    --color-foreground: hsla(34.29deg,45.16%,12.16%,1);
+    --color-logo: #C325FF;
+    --color-navtext: hsl(231.43deg,7.69%,82.16%);
+    --breakpoint-4xl: 768px;
+    --text-navSize: 0.9rem;
+    --text-mainTitleSize: clamp(1.2rem, 3vw, 28px);
+    --text-mainSubTitleSize: clamp(1rem, 3vw, 19px);
+    --text-mainContactSize: clamp(0.9rem, 2vw, 18px);
+    --animate-animate_open: animate_open 0.4s linear forwards;
+    @keyframes animate_open {
+        to {
+            left: 0;
+        }
+    }
+}
+@layer base {
+    body {
+        background: url("/public/publicImages/wallpaper.jpg") no-repeat center bottom fixed;
+        background-size: cover;
+    }
+    details summary {
+        @apply list-none;
+    }
+    details summary::-webkit-details-marker {
+        @apply list-none;
+    }
+
+    details::details-content {
+        height: 0;
+        transition: height .3s, content-visibility .3s;
+        transition-behavior: allow-discrete;
+    }
+    details[open]::details-content {
+        padding: 5px;
+        height: auto;
+    }
+
+}
+@layer components {
+    .title_component {
+        @apply text-center;
+        h1 {
+            @apply font-bold text-mainTitleSize leading-6 md:leading-8;
+        }
+        p {
+            @apply font-semibold text-mainSubTitleSize first-letter:capitalize text-foreground;
+
+            span {
+                @apply bg-[url("/public/publicImages/wallpaper.jpg")] bg-no-repeat bg-cover bg-center bg-clip-text text-transparent;
+            }
+        }
+    }
+    .padding_main {
+        @apply px-6 py-12 4xl:px-12 lg:px-18;
+    }
+    .testimonial {
+        @apply flex items-center h-80 overflow-hidden max-sm:flex-wrap justify-center gap-3 max-w-4xl mx-auto w-full mt-6;
+        .testimonial_content {
+            @apply flex w-full sm:w-88 py-8 rounded-sm bg-white h-full px-4 md:px-8 flex-col items-center justify-center overflow-hidden;
+            img {
+                @apply w-18 h-18 rounded-full border-2 border-blue-500 p-px overflow-hidden;
+            }
+            h1 {
+                @apply text-sm font-bold capitalize;
+            }
+            h4 {
+                @apply text-[12px] font-medium capitalize;
+            }
+            .testimonial_user_info {
+                @apply flex flex-1 flex-col items-center justify-center;
+                h6 {
+                    @apply text-sm font-medium capitalize text-center;
+                }
+            }
+            .testimonial_user_review {
+                @apply w-full flex justify-end-safe items-center;
+                h3 {
+                    @apply text-sm font-semibold;
+                }
+            }
+        }
+    }
+    .accordion_wrapper {
+        @apply mt-8 w-full max-w-4xl mx-auto border;
+        .accordion_content {
+            @apply flex md:flex-row-reverse flex-col-reverse md:h-80 gap-4;
+            .accordion_text {
+                @apply w-full md:w-1/2 h-full border border-red-400;
+                details {
+
+                }
+            }
+            .accordion_images {
+                @apply w-full md:w-1/2 h-80 md:h-full;
+                img {
+                    @apply hidden w-full h-full object-cover object-center;
+                }
+            }
+        }
+    }
+}
+
+.accordion_wrapper:has(details:nth-child(2)[open]) .accordion_images img:nth-child(2) {
+    @apply flex
+}
+.accordion_wrapper:has(details:nth-child(1)[open]) .accordion_images img:nth-child(1) {
+    @apply flex
+}
+/*@utility*/
+
+.hero_wrapper {
+    background: linear-gradient(to bottom,hsla(34.29deg,45.16%,12.16%,.5),hsla(64deg,13%,41%,.7)), url("/public/publicImages/wallpaper.jpg") no-repeat center 10%;
+    background-size: cover;
+}
+.btn_component {
+    @apply cursor-pointer w-42 h-11 rounded-4xl font-semibold flex justify-center items-center;
+}
