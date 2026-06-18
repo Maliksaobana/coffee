@@ -1,19 +1,7 @@
 import AccordionComponent from "../miniComponent/AccordionComponent.tsx";
+import {GalleryInfo} from "../constant.ts";
 
-const tryProp = [
-    {
-        id: 'rice',
-        summary: 'rice',
-        description: 'rices',
-        imageUrl: '/../../src/assets/userImages/user_2.jpg'
-    },
-    {
-        id: 'beans',
-        summary: 'beans',
-        description: 'beans we eat',
-        imageUrl: '/../../src/assets/userImages/user_1.jpg'
-    },
-]
+
 
 const Gallery = ({id}:{id:string}) => {
     return (
@@ -22,7 +10,7 @@ const Gallery = ({id}:{id:string}) => {
                 <h1>Our Services</h1>
                 <p>your <span>Desires</span> our Priority</p>
             </div>
-            <AccordionComponent accordionArray={tryProp} />
+            <AccordionComponent accordionArray={GalleryInfo} />
         </div>
     );
 };

@@ -5,6 +5,7 @@ import FullConfig from "./FullConfig.tsx";
 
 createRoot(document.querySelector('#main')!).render(
     <StrictMode>
+
         <FullConfig />
     </StrictMode>
 )

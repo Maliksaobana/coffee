@@ -1,4 +1,6 @@
 import {userComments} from "../constant.ts";
+import {IconContext} from "react-icons";
+import {FiStar} from "react-icons/fi";
 
 const Reviews = ({id}:{id:string}) => {
     return (
@@ -8,19 +10,34 @@ const Reviews = ({id}:{id:string}) => {
                 <p className='text-white'>what our Customers say about our Services</p>
             </div>
             <div className="testimonial">
-                {userComments.map(users => (
-                    <div key={users.id} className="testimonial_content">
-                        <img src={users.profileImg} alt={users.name} width={150} height={150} />
-                        <h1>{users.name}</h1>
-                        <h4>{users.tag}</h4>
-                        <div className="testimonial_user_info">
-                            <h6>{users.comment}</h6>
+                {userComments.map(users => {
+                    const starData = new Array(Math.floor(Number(users.review))).fill('');
+                    return (
+                        <div key={users.id} className="testimonial_content">
+                            <img src={users.profileImg} alt={users.name} width={150} height={150} />
+                            <h1>{users.name}</h1>
+                            <h4>{users.tag}</h4>
+                            <div className="testimonial_user_info">
+                                <h6>{users.comment}</h6>
+                            </div>
+                            <div className="testimonial_user_review">
+                                {
+                                    starData.map((_,i) => (
+                                        <div key={i}>
+                                            <IconContext value={{
+                                                style: {
+                                                    fill: 'yellow'
+                                                }
+                                            }}>
+                                                <FiStar />
+                                            </IconContext>
+                                        </div>
+                                    ))
+                                }
+                            </div>
                         </div>
-                        <div className="testimonial_user_review">
-                            <h3>{users.review}⭐️</h3>
-                        </div>
-                    </div>
-                ))}
+                    )
+                })}
             </div>
         </div>
     );

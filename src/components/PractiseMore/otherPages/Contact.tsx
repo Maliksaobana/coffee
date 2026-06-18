@@ -4,7 +4,7 @@ const Contact = ({id}:{id:string}) => {
             <div className="flex flex-col flex-nowrap justify-center items-center">
                 <div className="title_component">
                     <h1>Contact <span>Us</span></h1>
-                    <p>we will love to hear from you</p>
+                    <p>we will love to <span>hear</span> from you</p>
                 </div>
                 <div className="max-w-4xl w-full mt-7">
                     {/* contact method should include email address, location and textarea and submit button */}

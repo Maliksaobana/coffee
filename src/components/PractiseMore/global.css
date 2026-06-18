@@ -4,31 +4,37 @@
 :root {
     interpolate-size: allow-keywords;
 }
+* {
+ box-sizing: border-box;
+    scroll-behavior: smooth;
+}
 
 @theme {
     --color-background: hsla(64deg,13%,41%,1);
     --color-foreground: hsla(34.29deg,45.16%,12.16%,1);
     --color-logo: #C325FF;
     --color-navtext: hsl(231.43deg,7.69%,82.16%);
-    --breakpoint-4xl: 768px;
+    --breakpoint-4xl: 920px;
+    --breakpoint-xs: 390px;
     --text-navSize: 0.9rem;
     --text-mainTitleSize: clamp(1.2rem, 3vw, 28px);
     --text-mainSubTitleSize: clamp(1rem, 3vw, 19px);
     --text-mainContactSize: clamp(0.9rem, 2vw, 18px);
-    --animate-animate_open: animate_open 0.4s linear forwards;
-    @keyframes animate_open {
-        to {
-            left: 0;
-        }
-    }
 }
 @layer base {
     body {
-        background: url("/public/publicImages/wallpaper.jpg") no-repeat center bottom fixed;
+        background: url("/publicImages/wallpaper.jpg") no-repeat center bottom fixed;
         background-size: cover;
+    }
+    details {
+        padding-block: 3px;
     }
     details summary {
         @apply list-none;
+
+        & span {
+            display: none;
+        }
     }
     details summary::-webkit-details-marker {
         @apply list-none;
@@ -36,12 +42,14 @@
 
     details::details-content {
         height: 0;
-        transition: height .3s, content-visibility .3s;
+        opacity: 0;
+        transition: height .3s, content-visibility .3s, opacity .3s;
         transition-behavior: allow-discrete;
     }
     details[open]::details-content {
-        padding: 5px;
+        padding-block: 4px;
         height: auto;
+        opacity: 1;
     }
 
 }
@@ -63,11 +71,11 @@
         @apply px-6 py-12 4xl:px-12 lg:px-18;
     }
     .testimonial {
-        @apply flex items-center h-80 overflow-hidden max-sm:flex-wrap justify-center gap-3 max-w-4xl mx-auto w-full mt-6;
+        @apply flex items-center min-h-max md:h-88 flex-col md:flex-row justify-center gap-8 md:gap-3 max-w-4xl mx-auto w-full mt-8;
         .testimonial_content {
-            @apply flex w-full sm:w-88 py-8 rounded-sm bg-white h-full px-4 md:px-8 flex-col items-center justify-center overflow-hidden;
+            @apply flex w-full sm:w-88 py-8 rounded-sm bg-white h-88 md:h-full px-4 md:px-8 flex-col items-center justify-center overflow-hidden;
             img {
-                @apply w-18 h-18 rounded-full border-2 border-blue-500 p-px overflow-hidden;
+                @apply w-18 h-18 rounded-full border-2 border-blue-500 p-px;
             }
             h1 {
                 @apply text-sm font-bold capitalize;
@@ -82,43 +90,89 @@
                 }
             }
             .testimonial_user_review {
-                @apply w-full flex justify-end-safe items-center;
-                h3 {
-                    @apply text-sm font-semibold;
-                }
+                @apply w-full flex gap-0.5 justify-end-safe items-center;
             }
         }
     }
     .accordion_wrapper {
-        @apply mt-8 w-full max-w-4xl mx-auto border;
+        @apply mt-8 w-full max-w-4xl mx-auto;
         .accordion_content {
-            @apply flex md:flex-row-reverse flex-col-reverse md:h-80 gap-4;
+            @apply flex md:grid md:grid-cols-2 md:grid_component flex-col-reverse md:h-88 gap-4 justify-start;
             .accordion_text {
-                @apply w-full md:w-1/2 h-full border border-red-400;
-                details {
-
-                }
+                grid-area: text;
+                @apply w-full h-full flex flex-col border-b border-[#ccc];
             }
             .accordion_images {
-                @apply w-full md:w-1/2 h-80 md:h-full;
+                grid-area: picture;
+                @apply w-full h-88 md:h-full overflow-hidden;
                 img {
-                    @apply hidden w-full h-full object-cover object-center;
+                    @apply hidden w-full h-full transition-discrete object-cover object-center;
                 }
             }
         }
     }
 }
 
-.accordion_wrapper:has(details:nth-child(2)[open]) .accordion_images img:nth-child(2) {
-    @apply flex
+/* for the accordion span */
+.accordion_text details:nth-child(odd) summary span {
+    @apply text-foreground
 }
+
+.accordion_text details:nth-child(1) {
+    @apply border-b border-t border-[#ccc]
+}
+.accordion_text details {
+    @apply border-b border-[#ccc]
+}
+
+.accordion_text details:last-child {
+    @apply border-none
+}
+
+.accordion_text details:nth-child(even) summary span {
+    @apply text-background
+}
+
+.accordion_wrapper:has(details:nth-child(1)[open]) .accordion_text details:nth-child(1) summary span {
+    @apply block
+}
+.accordion_wrapper:has(details:nth-child(2)[open]) .accordion_text details:nth-child(2) summary span {
+    @apply block
+}
+.accordion_wrapper:has(details:nth-child(3)[open]) .accordion_text details:nth-child(3) summary span {
+    @apply block
+}
+.accordion_wrapper:has(details:nth-child(4)[open]) .accordion_text details:nth-child(4) summary span {
+    @apply block
+}
+.accordion_wrapper:has(details:nth-child(5)[open]) .accordion_text details:nth-child(5) summary span {
+    @apply block
+}
+
+/* for the accordion image */
 .accordion_wrapper:has(details:nth-child(1)[open]) .accordion_images img:nth-child(1) {
-    @apply flex
+    @apply block opacity-100
 }
-/*@utility*/
+.accordion_wrapper:has(details:nth-child(2)[open]) .accordion_images img:nth-child(2) {
+    @apply block opacity-100
+}
+.accordion_wrapper:has(details:nth-child(3)[open]) .accordion_images img:nth-child(3) {
+    @apply block opacity-100
+}
+.accordion_wrapper:has(details:nth-child(4)[open]) .accordion_images img:nth-child(4) {
+    @apply block opacity-100
+}
+
+.accordion_wrapper:has(details:nth-child(5)[open]) .accordion_images img:nth-child(5) {
+    @apply block opacity-100
+}
+@utility grid_component {
+    display: grid;
+    grid-template-areas: "picture text";
+}
 
 .hero_wrapper {
-    background: linear-gradient(to bottom,hsla(34.29deg,45.16%,12.16%,.5),hsla(64deg,13%,41%,.7)), url("/public/publicImages/wallpaper.jpg") no-repeat center 10%;
+    background: linear-gradient(to bottom,hsla(34.29deg,45.16%,12.16%,.5),hsla(64deg,13%,41%,.7)), url("/publicImages/wallpaper.jpg") no-repeat center 10%;
     background-size: cover;
 }
 .btn_component {
