@@ -1,4 +1,4 @@
-import MenuPic from '../../.././assets/coffeeImages/herryway-bread.jpg'
+import MenuPic from '../../assets/coffeeImages/herryway-bread.jpg'
 import {SiCoffeescript} from "react-icons/si";
 import {IconContext} from "react-icons";
 const Menu = ({id}:{id:string}) => {

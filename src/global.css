@@ -71,9 +71,9 @@
         @apply px-6 py-12 4xl:px-12 lg:px-18;
     }
     .testimonial {
-        @apply flex items-center min-h-max md:h-88 flex-col md:flex-row justify-center gap-8 md:gap-3 max-w-4xl mx-auto w-full mt-8;
+        @apply flex items-center min-h-max md:h-86 flex-col md:flex-row justify-center gap-8 md:gap-3 max-w-4xl mx-auto w-full mt-8;
         .testimonial_content {
-            @apply flex w-full sm:w-88 py-8 rounded-sm bg-white h-88 md:h-full px-4 md:px-8 flex-col items-center justify-center overflow-hidden;
+            @apply flex w-full sm:w-88 py-8 rounded-sm bg-white h-86 md:h-full px-4 md:px-8 flex-col items-center justify-center overflow-hidden;
             img {
                 @apply w-18 h-18 rounded-full border-2 border-blue-500 p-px;
             }

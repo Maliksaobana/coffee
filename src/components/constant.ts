@@ -85,7 +85,7 @@ export const userComments: Array<testimonials> = [
         id: 'sandra blake',
         name: 'sandra blake',
         tag: 'london, uk',
-        comment: 'word',
+        comment: 'A quibusdam recusandae sint tempora tenetur velit voluptate voluptates.',
         review: '4',
         profileImg: '../../src/assets/userImages/user_2.jpg'
     }

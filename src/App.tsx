@@ -1,20 +1,18 @@
-// import Todo from "./components/Todo.tsx";
-// import ListingItems from "./components/ListingItems.tsx";
-// import TsxTodo from "./components/TsxTodo.tsx";
-// import TypeInfo from "./components/moreStudy/TypeInfo.tsx";
-// import Further from "./components/further/Further.tsx";
-// import Counter from "./components/CountDown/Counter.tsx";
-// import MainPage from "./components/ColorPicker/MainPage.tsx";
-// import CalculatorWrapper from "./components/Calculator/CalculatorWrapper.tsx";
-// import PriceWrapper from "./components/Pricer/PriceWrapper.tsx";
-import DebounceWrapper from "./components/ReactDebounce/DebounceWrapper.tsx";
+import { HeaderSection, HeroSection, Menu, Gallery, Reviews, About, Contact, Footer } from './components/exportMain.ts'
+
 
 export default function App() {
     return (
-        <>
-            <div className="main_wrapper">
-                <DebounceWrapper/>
-            </div>
-        </>
-    )
+        <main className="flex flex-col flex-nowrap min-h-screen relative overflow-x-hidden">
+            {/*note at screen 1180 nav bar has an issue check and fix*/}
+            <HeaderSection />
+            <HeroSection id='home' />
+            <Menu id='menu' />
+            <Gallery id='gallery' />
+            <Reviews id='reviews' />
+            <About id='about' />
+            <Contact id='contact' />
+            <Footer />
+        </main>
+    );
 }
